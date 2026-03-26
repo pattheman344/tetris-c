@@ -3,6 +3,27 @@ ___
 # Tetris
 I decided to make this program because I was looking for something I could write that could sharpen my skills in the C language. There are still a few things that I possibly want to implement or refactor, so if there are any bugs, they are to be expected.
 ___
+# Instructions
+Download the source code and compile with gcc
+```bash
+gcc main.c board.c piece.c terminal.c -o tetris
+```
+Then run with
+```bash
+./tetris
+```
+___
+# Controls
+If you (for some reason), haven't played tetris before, here are the controls.
+
+|Key|Description|
+|---|-----------|
+| **W** | Rotate piece |
+| **A** | Move piece left |
+| **S** | Move piece down |
+| **D** | Move piece right|
+| **Q** | Exit program |
+___
 
 | TO DO |
 |-------|
