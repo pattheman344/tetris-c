@@ -57,3 +57,26 @@ int is_valid_position(Board *board, Piece *piece, int dx, int dy){
     return 1;
 }
 
+void rotate_piece(Board *board, Piece *piece){
+    for(int i=0; i < 4; i++){
+        int bx = piece->x + piece->blocks[i].x;
+        int by = piece->y + piece->blocks[i].y;
+        board->grid[by * board->width + bx] = 0;
+    }
+    Block original[4];
+    for(int i=0; i < 4; i++){
+        original[i] = piece->blocks[i];
+        int new_x = -piece->blocks[i].y;
+        int new_y = piece->blocks[i].x;
+        piece->blocks[i].x = new_x;
+        piece->blocks[i].y = new_y;
+    }
+    if(is_valid_position(board, piece, 0, 0)){
+        place_piece(board, piece);
+    } else{
+        for(int i=0; i < 4; i++){
+            piece->blocks[i] = original[i];
+        }
+    }
+}
+

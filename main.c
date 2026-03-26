@@ -22,6 +22,7 @@ int main(){
             if(c == 'a') move_piece(board, piece, -1, 0);
             if(c == 'd') move_piece(board, piece, 1, 0);
             if(c == 's') move_piece(board, piece, 0, 1);
+            if(c == 'w') rotate_piece(board, piece);
             if(c == 'q'){
                 free(piece);
                 free_board(board);
@@ -36,6 +37,7 @@ int main(){
             move_piece(board, piece, 0, 1);
             if(piece->y == old_y){
                 free(piece);
+                clear_lines(board);
                 piece = create_piece(rand() % 7);
                 if(!is_valid_position(board, piece, 0, 0)){
                     printf("Game Over!\r\n");

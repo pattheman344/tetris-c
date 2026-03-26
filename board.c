@@ -30,3 +30,37 @@ void print_board(Board *board){
         printf("\r\n");
     }
 }
+
+int is_row_full(Board *board, int row){
+    for(int col=0; col < board->width; col++){
+        if(board->grid[row * board->width + col] == 0){
+            return 0;
+        }
+    }
+    return 1;
+}
+
+void clear_row(Board *board, int row){
+    for(int r = row; r > 0; r--){
+        for(int col = 0; col < board->width; col++){
+            board->grid[r * board->width + col] = board->grid[(r-1) * board->width + col];
+        }
+    }
+    for(int col = 0; col < board->width; col++){
+        board->grid[col] = 0;
+    }
+}
+
+int clear_lines(Board *board){
+    int count = 0;
+    int i = board->height - 1;
+    while(i >= 0){
+        if(is_row_full(board, i) == 1){
+            clear_row(board, i);
+            count++;
+        } else{
+            i--;
+        }
+    }
+    return count;
+}
