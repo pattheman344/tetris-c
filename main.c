@@ -10,10 +10,12 @@
 int main(){
     enableRawMode();
     atexit(disableRawMode);
+    srand(time(NULL));
     Board* board = create_board(10, 20);
-    Piece* piece = create_piece(L_PIECE);
+    Piece* piece = create_piece(rand() % 7);
     place_piece(board, piece);
-    clock_t last_drop = clock();
+    struct timespec last_drop, now;
+    clock_gettime(CLOCK_MONOTONIC, &last_drop);
     while(1){
         char c;
         if(read(STDIN_FILENO, &c, 1) == 1){
@@ -26,14 +28,15 @@ int main(){
                 return 0;
             }
         }
-        clock_t now = clock();
-        if((now - last_drop) > CLOCKS_PER_SEC / 2){
+        clock_gettime(CLOCK_MONOTONIC, &now);
+        long elapsed_ms = (now.tv_sec - last_drop.tv_sec) * 1000
+                        + (now.tv_nsec - last_drop.tv_nsec) / 1000000;
+        if(elapsed_ms > 500){
             int old_y = piece->y;
             move_piece(board, piece, 0, 1);
             if(piece->y == old_y){
-                // piece has landed, spawn a new one
                 free(piece);
-                piece = create_piece(L_PIECE);
+                piece = create_piece(rand() % 7);
                 if(!is_valid_position(board, piece, 0, 0)){
                     printf("Game Over!\r\n");
                     free(piece);
