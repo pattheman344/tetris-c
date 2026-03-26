@@ -6,7 +6,7 @@ ___
 # Instructions
 Download the source code and compile with gcc
 ```bash
-gcc main.c board.c piece.c terminal.c -o tetris
+gcc *.c -o tetris
 ```
 Then run with
 ```bash
