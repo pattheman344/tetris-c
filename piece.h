@@ -30,4 +30,8 @@ Piece* create_piece(PieceType type);
 
 void place_piece(Board *board, Piece *piece);
 
+void move_piece(Board *board, Piece *piece, int dx, int dy);
+
+int is_valid_position(Board *board, Piece *piece, int dx, int dy);
+
 #endif
