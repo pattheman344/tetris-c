@@ -27,8 +27,6 @@ ___
 
 | TO DO |
 |-------|
-| Bonus points if multiple lines cleared|
-| Level system (increased speed each level)|
 | Colour implementation (possibly customisable)|
 
 If you have any suggestions, please open an issue.

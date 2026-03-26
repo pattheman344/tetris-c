@@ -17,6 +17,8 @@ int main(){
     struct timespec last_drop, now;
     clock_gettime(CLOCK_MONOTONIC, &last_drop);
     int score = 0;
+    int totallines = 0;
+    int level = (totallines / 10) + 1;
     while(1){
         char c;
         if(read(STDIN_FILENO, &c, 1) == 1){
@@ -33,13 +35,28 @@ int main(){
         clock_gettime(CLOCK_MONOTONIC, &now);
         long elapsed_ms = (now.tv_sec - last_drop.tv_sec) * 1000
                         + (now.tv_nsec - last_drop.tv_nsec) / 1000000;
-        if(elapsed_ms > 500){
+        if(elapsed_ms > 500 / level){
             int old_y = piece->y;
             move_piece(board, piece, 0, 1);
             if(piece->y == old_y){
                 free(piece);
                 int cleared = clear_lines(board);
-                score += cleared * 100;
+                totallines += cleared;
+                level = (totallines / 10) + 1;
+                switch(cleared){
+                    case 1:
+                        score += level * 100;
+                        break;
+                    case 2:
+                        score += level * 300;
+                        break;
+                    case 3:
+                        score += level * 500;
+                        break;
+                    case 4:
+                        score += level * 800;
+                        break;
+                }
                 piece = create_piece(rand() % 7);
                 if(!is_valid_position(board, piece, 0, 0)){
                     printf("Game Over!\r\n");
@@ -53,6 +70,7 @@ int main(){
         }
         print_board(board);
         printf("Score: %d\r\n", score);
+        printf("Level: %d\r\n", level);
         usleep(16000);
     }
     free(piece);
