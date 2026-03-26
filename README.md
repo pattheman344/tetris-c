@@ -6,7 +6,7 @@ ___
 
 | TO DO |
 |-------|
-| Score implementation|
+| Bonus points if multiple lines cleared|
 | Level system (increased speed each level)|
 | Colour implementation (possibly customisable)|
 

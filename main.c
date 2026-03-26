@@ -16,6 +16,7 @@ int main(){
     place_piece(board, piece);
     struct timespec last_drop, now;
     clock_gettime(CLOCK_MONOTONIC, &last_drop);
+    int score = 0;
     while(1){
         char c;
         if(read(STDIN_FILENO, &c, 1) == 1){
@@ -37,7 +38,8 @@ int main(){
             move_piece(board, piece, 0, 1);
             if(piece->y == old_y){
                 free(piece);
-                clear_lines(board);
+                int cleared = clear_lines(board);
+                score += cleared * 100;
                 piece = create_piece(rand() % 7);
                 if(!is_valid_position(board, piece, 0, 0)){
                     printf("Game Over!\r\n");
@@ -50,6 +52,7 @@ int main(){
             last_drop = now;
         }
         print_board(board);
+        printf("Score: %d\r\n", score);
         usleep(16000);
     }
     free(piece);
