@@ -25,8 +25,4 @@ If you (for some reason), haven't played tetris before, here are the controls.
 | **Q** | Exit program |
 ___
 
-| TO DO |
-|-------|
-| Colour implementation (possibly customisable)|
-
 If you have any suggestions, please open an issue.
