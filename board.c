@@ -1,6 +1,8 @@
 #include "board.h"
+#include "piece.h"
 #include <stdlib.h>
 #include <stdio.h>
+
 
 Board* create_board(int width, int height){
     Board* board = malloc(sizeof(Board));
@@ -23,9 +25,17 @@ void print_board(Board *board){
     fflush(stdout);
     for(int i=0; i < board->height; i++){
         for(int j=0; j < board->width; j++){
-            if(board->grid[i * board->width + j] == 1){
-                printf("#");
-            } else printf(".");
+            int cell = board->grid[i * board->width + j];
+            switch(cell){
+                case I_PIECE: printf("\033[1;36m#\033[0m"); break;
+                case O_PIECE: printf("\033[1;33m#\033[0m"); break;
+                case T_PIECE: printf("\033[1;35m#\033[0m"); break;
+                case L_PIECE: printf("\033[38;5;208m#\033[0m"); break;
+                case J_PIECE: printf("\033[1;34m#\033[0m"); break;
+                case S_PIECE: printf("\033[1;32m#\033[0m"); break;
+                case Z_PIECE: printf("\033[1;31m#\033[0m"); break;
+                default:      printf("."); break;
+            }
         }
         printf("\r\n");
     }

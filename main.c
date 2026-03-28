@@ -12,7 +12,7 @@ int main(){
     atexit(disableRawMode);
     srand(time(NULL));
     Board* board = create_board(10, 20);
-    Piece* piece = create_piece(rand() % 7);
+    Piece* piece = create_piece((rand() % 7) + 1);
     place_piece(board, piece);
     struct timespec last_drop, now;
     clock_gettime(CLOCK_MONOTONIC, &last_drop);
@@ -57,7 +57,7 @@ int main(){
                         score += level * 800;
                         break;
                 }
-                piece = create_piece(rand() % 7);
+                piece = create_piece((rand() % 7) + 1);
                 if(!is_valid_position(board, piece, 0, 0)){
                     printf("Game Over!\r\n");
                     free(piece);

@@ -9,13 +9,14 @@ typedef struct{
 } Block;
 
 typedef enum{
-    I_PIECE,  // 0
-    O_PIECE,  // 1
-    T_PIECE,  // 2
-    L_PIECE,  // 3
-    J_PIECE,  // 4
-    S_PIECE,  // 5
-    Z_PIECE   // 6
+    EMPTY = 0,
+    I_PIECE,  // 1
+    O_PIECE,  // 2
+    T_PIECE,  // 3
+    L_PIECE,  // 4
+    J_PIECE,  // 5
+    S_PIECE,  // 6
+    Z_PIECE   // 7
 } PieceType;
 
 typedef struct{
