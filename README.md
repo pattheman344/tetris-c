@@ -4,9 +4,9 @@ ___
 I decided to make this program because I was looking for something I could write that could sharpen my skills in the C language. There are still a few things that I possibly want to implement or refactor, so if there are any bugs, they are to be expected.
 ___
 # Instructions
-Download the source code and compile with gcc
+Download the source code and compile with the provided Makefile
 ```bash
-gcc *.c -o tetris
+make tetris
 ```
 Then run with
 ```bash
